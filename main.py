@@ -31,7 +31,7 @@ Script starter function
 
 
 
-def lambda_handler(one, two):
+def lambda_handler(event, context):
     
     v1Data = tmv1Caller()
     preparedData = ipExtractor(v1Data)
@@ -56,11 +56,13 @@ def tmv1Caller():
         sys.exit()
     tmv1Config['queryPeriod'] = {}
     
-    try:
-        tmv1Config['queryPeriod'][os.environ['TMV1QUERYPERIODTYPE']] = int(os.environ['TMV1QUERYPERIODVALUE'])
-    except KeyError:
-        tmv1Config['queryPeriod'] = {"days":1}
-    
+    if os.environ['TMV1QUERYPERIODTYPE'] in acceptablePeriodTypes:
+        try:
+            tmv1Config['queryPeriod'][os.environ['TMV1QUERYPERIODTYPE']] = int(os.environ['TMV1QUERYPERIODVALUE'])
+        except KeyError:
+            tmv1Config['queryPeriod'] = {"days":1}
+    else:
+        print('Incorrect value ' + os.environ['TMV1QUERYPERIODTYPE'])
     dtCalculated = dateCalculator(tmv1Config['queryPeriod'])
     tmv1Config['apiQueryParams'] = {'startDateTime': dtCalculated}
 
