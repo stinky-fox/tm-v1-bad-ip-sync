@@ -1,6 +1,10 @@
 # About
 Sync malicious IP addresses to AbuseIPDB service. Initially designed for serverless (like AWS Lambda) but can be used on any Virtual Machine with python.
 
+<a href="https://www.abuseipdb.com/user/86108" title="AbuseIPDB is an IP address blacklist for webmasters and sysadmins to report IP addresses engaging in abusive behavior on their networks">
+	<img src="https://www.abuseipdb.com/contributor/86108.svg" alt="AbuseIPDB Contributor Badge" style="width: 401px;">
+</a>
+
 # Requirements
 
 - Cloud One Workload Security reporting IPS detections to the Vision One
